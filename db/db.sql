@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS myWorkers;
+CREATE DATABASE myWorkers;
+USE myWorkers;
