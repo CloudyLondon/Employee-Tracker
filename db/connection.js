@@ -9,8 +9,8 @@ const db = mysql.createConnection(
   {
     host: "localhost",
     // Your MySQL username,
-    user: process.env.MYSQL_USERNAME,
-    password: process.env.MYSQL_PASSWORD,
+    user: process.env.DB_USER,
+    password: process.env.DB_PW,
     database: "myWorkers",
   },
   console.log("Connected to the myworkers database.")
