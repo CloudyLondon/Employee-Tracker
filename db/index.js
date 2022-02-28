@@ -17,31 +17,31 @@ class Database {
     return this.connection.promise().query("SELECT * FROM department");
   }
 
-  viewALLRoles() {
-    return this.connection.promise().query("SELECT * FROM role");
+  viewAllRoles() {
+    return this.connection.promise().query("SELECT * FROM roles");
   }
 
-  viewALLEmployees() {
+  viewAllEmployees() {
     return this.connection.promise().query("SELECT * FROM employee");
   }
 
-  addThisDepartment() {
+  addThisDepartment(departmentData) {
     return this.connection
       .promise()
-      .query("INSERT INTO department SET ?", departmentData); //the data is coming from inquirer prompt, ill need to rmb to name them the same name
+      .query("INSERT INTO department SET name = ?", departmentData); //the data is coming from inquirer prompt, ill need to rmb to name them the same name
   }
 
-  addThisRole() {
+  addThisRole(roleData) {
     return this.connection.promise().query("INSERT INTO role SET ?", roleData);
   }
 
-  addThisEmployee() {
+  addThisEmployee(employeeData) {
     return this.connection
       .promise()
       .query("INSERT INTO employee SET ?", employeeData);
   }
 
-  updateThisEmployeeRole() {
+  updateThisEmployeeRole(roleIdData) {
     return this.connection
       .promise()
       .query("UPDATE employee SET role_id WHERE ID ?", roleIdData);

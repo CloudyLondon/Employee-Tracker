@@ -1,7 +1,7 @@
 INSERT INTO department(id, name)
 VALUES (1, "Admin"), (2, "Finance"), (3, "HR"), (4, "Customer Service"), (5, "IT");
 
-INSERT INTO role(id, title, salary, department_id)
+INSERT INTO roles(id, title, salary, department_id)
 VALUES   (1, "Big Boss", 2000000, 1),
   (2, "Another Boss", 100000, 2),
   (3, "One More boss", 200000, 3),
