@@ -133,6 +133,7 @@ function addEmployee() {
     });
   });
 }
+addEmployee();
 
 function updateEmployeeRole(roleIdData) {
   //add questions with inquirer to collect data from user input
