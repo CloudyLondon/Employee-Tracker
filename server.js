@@ -2,6 +2,7 @@
 const { prompt } = require("inquirer");
 require("console.table"); //look up console.table
 const connection = require("./db/connection");
+const inquirer = require("inquirer");
 
 const Database = require("./db/index");
 const mysql = new Database(connection);
@@ -28,19 +29,62 @@ const {
 //make a giant switch statement which includes:
 //first. i need a {prompt} thats has all the thing that i want to go thru (view ... ... .. add new... ... update (all 7 of them))
 //then. i need (.then)(check inquirer)
-// const inquirer = require('inquirer');
+
 //use below:
 
-// inquirer
-//   .prompt([
-//     {
-//       name: 'faveReptile',
-//       message: 'What is your favorite reptile?'
-//     },
-//   ])
-//   .then(answers => {
-//     console.info('Answer:', answers.faveReptile);
-//   });
+const startQuery = function () {
+  inquirer
+    .prompt([
+      {
+        name: "start",
+        type: "list",
+        message: "What do you want to do?",
+        choices: [
+          "View All Departments",
+          "View All Roles",
+          "View All Employees",
+          "Add a New Department",
+          "Add a New Role",
+          "Add a New Employee",
+          "Update an employee's Role",
+          "None of above",
+        ],
+      },
+    ])
+    .then((response) => {
+      switch (response.start) {
+        case "View All Departments":
+          viewDepartments();
+          break;
+
+        case "View All Roles":
+          viewRoles();
+          break;
+
+        case "View All Employees":
+          viewEmployees();
+          break;
+
+        case "Add a New Department":
+          addDepartment();
+          break;
+
+        case "Add a New Role":
+          addRole();
+          break;
+
+        case "Update an employee's Role":
+          updateEmployeeRole();
+          break;
+
+        case "None of Above":
+          console.log("Ok, see ya!");
+          connection.end();
+          break;
+      }
+    });
+};
+startQuery();
 
 function viewDepartments() {
   mysql.viewAllDepartments().then(function (data) {
@@ -69,7 +113,6 @@ function addDepartment() {
     });
   });
 }
-addDepartment();
 
 function addRole() {
   //add questions with inquirer to collect data from user input
@@ -80,11 +123,15 @@ function addRole() {
     });
   });
 }
-addRole();
 
 function addEmployee() {
   //add questions with inquirer to collect data from user input
-  mysql.addNewEmployee(employeeData).then(function (data) {});
+  addNewEmployee().then(function (data) {
+    console.log(data.employeeData);
+    mysql.addThisEmployee(data.employeeData).then(function (response) {
+      console.log(response);
+    });
+  });
 }
 
 function updateEmployeeRole(roleIdData) {
