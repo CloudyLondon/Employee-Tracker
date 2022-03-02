@@ -21,7 +21,26 @@ const {
 // 6. add an employee,
 // 7. and update an employee role
 // need the 7 functions
-//
+
+//TODO: add functon menu
+//which will prompt the user to select what they want to do
+
+//make a giant switch statement which includes:
+//first. i need a {prompt} thats has all the thing that i want to go thru (view ... ... .. add new... ... update (all 7 of them))
+//then. i need (.then)(check inquirer)
+// const inquirer = require('inquirer');
+//use below:
+
+// inquirer
+//   .prompt([
+//     {
+//       name: 'faveReptile',
+//       message: 'What is your favorite reptile?'
+//     },
+//   ])
+//   .then(answers => {
+//     console.info('Answer:', answers.faveReptile);
+//   });
 
 function viewDepartments() {
   mysql.viewAllDepartments().then(function (data) {
@@ -54,18 +73,21 @@ addDepartment();
 
 function addRole() {
   //add questions with inquirer to collect data from user input
-  mysql.addThisRole(roleData).then(function (data) {});
+  addNewRole().then(function (data) {
+    console.log(data.roleData);
+    mysql.addThisRole(data.roleData).then(function (response) {
+      console.log(response);
+    });
+  });
 }
+addRole();
 
 function addEmployee() {
   //add questions with inquirer to collect data from user input
-  mysql.addThisEmployee(employeeData).then(function (data) {});
+  mysql.addNewEmployee(employeeData).then(function (data) {});
 }
 
 function updateEmployeeRole(roleIdData) {
   //add questions with inquirer to collect data from user input
-  mysql.updateThisEmployeeRole(roleIdData).then(function (data) {});
+  mysql.updateCurrentEmployeeRole(roleIdData).then(function (data) {});
 }
-
-//TODO: add functon menu
-//which will prompt the user to select what they want to do
