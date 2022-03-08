@@ -107,6 +107,7 @@ function viewEmployees() {
 function addDepartment() {
   //add questions with inquirer to collect data from user input
   addNewDepartment().then(function (data) {
+    //addNewDepartment() is from questions
     console.log(data.departmentName);
     mysql.addThisDepartment(data.departmentName).then(function (response) {
       console.log(response);
@@ -117,11 +118,17 @@ function addDepartment() {
 function addRole() {
   //add questions with inquirer to collect data from user input
   addNewRole().then(function (data) {
+    // addNewRole is from questions, so
+    // the data is from addNewRole()
     console.log(data.roleData);
     mysql.addThisRole(data.roleData).then(function (response) {
+      //TODO: the .then here is NOT WORKING!!!!!!
       console.log(response);
     });
   });
+  // .catch(function (error) {
+  //   console.error(error);
+  // });
 }
 
 function addEmployee() {
@@ -133,7 +140,6 @@ function addEmployee() {
     });
   });
 }
-addEmployee();
 
 function updateEmployeeRole(roleIdData) {
   //add questions with inquirer to collect data from user input
