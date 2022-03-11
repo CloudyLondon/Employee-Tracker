@@ -73,6 +73,10 @@ const startQuery = function () {
           addRole();
           break;
 
+        case "Add a New Employee":
+          addEmployee();
+          break;
+
         case "Update an employee's Role":
           updateEmployeeRole();
           break;
@@ -89,18 +93,21 @@ startQuery();
 function viewDepartments() {
   mysql.viewAllDepartments().then(function (data) {
     console.table(data[0]);
+    startQuery();
   });
 }
 
 function viewRoles() {
   mysql.viewAllRoles().then(function (data) {
     console.table(data[0]);
+    startQuery();
   });
 }
 
 function viewEmployees() {
   mysql.viewAllEmployees().then(function (data) {
     console.table(data[0]);
+    startQuery();
   });
 }
 
@@ -110,7 +117,8 @@ function addDepartment() {
     //addNewDepartment() is from questions
     console.log(data.departmentName);
     mysql.addThisDepartment(data.departmentName).then(function (response) {
-      console.log(response);
+      console.log("Success!");
+      startQuery();
     });
   });
 }
@@ -122,8 +130,8 @@ function addRole() {
     // the data is from addNewRole()
     console.log(data.roleData);
     mysql.addThisRole(data.roleData).then(function (response) {
-      //TODO: the .then here is NOT WORKING!!!!!!
       console.log(response);
+      startQuery();
     });
   });
   // .catch(function (error) {
@@ -137,11 +145,18 @@ function addEmployee() {
     console.log(data.employeeData);
     mysql.addThisEmployee(data.employeeData).then(function (response) {
       console.log(response);
+      startQuery();
     });
   });
 }
 
-function updateEmployeeRole(roleIdData) {
+function updateEmployeeRole() {
   //add questions with inquirer to collect data from user input
-  mysql.updateCurrentEmployeeRole(roleIdData).then(function (data) {});
+  updateCurrentEmployeeRole().then(function (data) {
+    mysql.updateThisEmployeeRole(data.employeeData).then(function (response) {
+      console.log(response);
+      startQuery();
+    });
+  });
+  // mysql.updateCurrentEmployeeRole(roleIdData).then(function (data) {});
 }
