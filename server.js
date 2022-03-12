@@ -128,9 +128,9 @@ function addRole() {
   addNewRole().then(function (data) {
     // addNewRole is from questions, so
     // the data is from addNewRole()
-    console.log(data.roleData);
-    mysql.addThisRole(data.roleData).then(function (response) {
-      console.log(response);
+    console.log(data);
+    mysql.addThisRole(data).then(function (response) {
+      console.log("Success!");
       startQuery();
     });
   });

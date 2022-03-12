@@ -32,13 +32,21 @@ class Database {
   }
 
   addThisRole(roleData) {
-    return this.connection.promise().query("INSERT INTO role SET ?", roleData); //TODO: err after everything
+    return this.connection.promise().query("INSERT INTO roles SET ?", roleData);
   }
 
   addThisEmployee(employeeData) {
     return this.connection
       .promise()
-      .query("INSERT INTO employee SET ?", employeeData); //not working after first name, last name and pick the department. "err: sql syntax"
+      .query("INSERT INTO employee SET ?", employeeData);
+  }
+
+  getManager(departmentIdData) {
+    return this.connection.promise().query(
+      "SELECT column_name
+    FROM table1
+    LEFT JOIN table2
+    ON table1.column_name = table2.column_name;", departmentIdData);
   }
 
   updateThisEmployeeRole(roleIdData, employeeIdData) {
