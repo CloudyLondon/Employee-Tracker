@@ -142,8 +142,8 @@ function addRole() {
 function addEmployee() {
   //add questions with inquirer to collect data from user input
   addNewEmployee().then(function (data) {
-    console.log(data.employeeData);
-    mysql.addThisEmployee(data.employeeData).then(function (response) {
+    console.log(data);
+    mysql.addThisEmployee(data).then(function (response) {
       console.log(response);
       startQuery();
     });
