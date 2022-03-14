@@ -24,9 +24,13 @@ SO THAT I can organize and plan my business
 - Inquirer
 - MySQL
 
+### Screenshot
+
+[Screenshot](./assets/employee-tracker-screenshot.png)
+
 ### Walkthrough
 
-[link](./assets/employee-tracker-walkthrough.mov)
+[Walkthrough](./assets/employee-tracker-walkthrough.mov)
 
 ### Contribution
 
